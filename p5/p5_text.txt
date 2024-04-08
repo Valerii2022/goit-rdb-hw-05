@@ -1,0 +1,22 @@
+DROP FUNCTION IF EXISTS Calculate;
+
+DELIMITER //
+
+CREATE FUNCTION Calculate(first_number FLOAT, second_number FLOAT)
+RETURNS FLOAT
+DETERMINISTIC 
+NO SQL
+BEGIN
+    DECLARE result INT;
+    SET result = first_number / second_number;
+    RETURN result;
+END //
+
+DELIMITER ;
+
+
+SELECT *, Calculate(quantity, 2.0) AS func_result
+FROM order_details
+
+
+
